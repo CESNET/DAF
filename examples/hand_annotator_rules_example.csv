@@ -1,0 +1,2 @@
+ip_address,group,class,os-family,os-type,os-version
+192.168.0.5,server,web server,linux,debian,debian 10

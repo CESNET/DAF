@@ -1,0 +1,2 @@
+hostname,group,class,os-family,os-type,os-version
+nerd.liberouter.org,server,web server,linux,debian,Debian-10
