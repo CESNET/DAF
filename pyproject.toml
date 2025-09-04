@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daf"
+version = "1.0.0"
+authors = [
+  { name="Matej Hulák", email="hulak@cesnet.com" },
+  { name="Josef Koumar", email="koumar@cesnet.com" },
+  { name="Václav Bartoš", email="bartos@cesnet.com" },
+]
+description = "Device Annotation Framework (DAF): annotate flow records with metadata"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENCE" }
+dependencies = [
+  "pandas>=1.5",
+  "pyyaml>=6.0",
+  "requests>=2.32"
+]
+
+[project.scripts]
+daf = "daf:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+py-modules = [
+  "daf",
+  "ip",
+  "ip_ranges",
+  "load",
+  "output",
+  "stats",
+  "annotation"
+]
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = ["src"]
+
+[tool.pylint.main]
+init-hook = "import sys; sys.path.insert(0, 'src')"
+
+[tool.pylint.messages_control]
+disable = "all"
+enable = [
+  "F",
+  "E",
+  "unused-import",
+  "unused-variable",
+  "redefined-outer-name",
+  "redefined-builtin",
+  "broad-except",
+  "bare-except",
+  "dangerous-default-value"
+]
+confidence = ["HIGH"]
+
+[tool.pylint.format]
+max-line-length = 100
