@@ -1,0 +1,14 @@
+{
+    "server": [
+        "web", "mail", "dns", "dhcp", "ntp", "syslog", "vpn", "honeypot",
+        "data", "git", "metacentrum", "bot", "authentication", "smtp",
+        "proxy", "multipurpose", "development"
+    ],
+    "net-device": [
+        "core router", "wifi router", "firewall"
+    ],
+    "end-device": [
+        "workstation", "mobile", "tablet", "wifi client", "printer", "voip",
+        "ups", "payment terminal", "ip camera", "tv", "smartwearable"
+    ]
+}

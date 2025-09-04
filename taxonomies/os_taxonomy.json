@@ -1,0 +1,32 @@
+{
+  "windows": [
+    "windows",
+    "server"
+  ],
+  "macos": [
+    "macos",
+    "ios",
+    "ipados"
+  ],
+  "linux": [
+    "debian",
+    "ubuntu",
+    "centos",
+    "rhel",
+    "gentoo",
+    "fedora",
+    "opensuse",
+    "arch linux",
+    "manjaro",
+    "oracle linux",
+    "rocky",
+    "cisco ios",
+    "oracle"
+  ],
+  "unix": [
+    "freebsd"
+  ],
+  "android": [
+    "android"
+  ]
+}
