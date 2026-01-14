@@ -36,7 +36,7 @@ mac_annotator:
   path: auto
   src_mac_field: "SRC_MAC"
   dst_mac_field: "DST_MAC"
-  db_file: "./annotators/mac_annotator/vendor_os_db.csv"
+  db_file: "../dbs/mac_annotator-vendor_os_db.csv"
 
 shodan_annotator:
   enabled: False      # Change to True to enable
@@ -51,7 +51,7 @@ shodan_annotator:
 sni_annotator:
   enabled: True
   path: auto
-  db_file: "./annotators/sni_annotator/os_database.csv"
+  db_file: "../dbs/sni_annotator-os_database.csv"
   fields: ["TLS_SNI", "QUIC_SNI", ["HTTP_REQUEST_HOST", "HTTP_REQUEST_URL"], "DNS_NAME"]
 
 useragent_annotator:

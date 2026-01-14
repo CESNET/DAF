@@ -1,10 +1,13 @@
 src/shodan_api_key.txt
 src/daf_config.yml
 
-src/annotators/hand_annotator/hand_annotation_rules.csv
-src/annotators/hostname_annotator/full-match.csv
-src/annotators/hostname_annotator/sequences.csv
-src/annotators/hostname_annotator/subsequences.csv
+dbs/hand_annotation_rules.csv
+dbs/Keywords.csv
+dbs/browsers_useragents.csv
+dbs/others_useragents.csv
+dbs/full-match.csv
+dbs/sequences.csv
+dbs/subsequences.csv
 
 .vscode/
 .venv/
