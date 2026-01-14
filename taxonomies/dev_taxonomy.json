@@ -2,7 +2,7 @@
     "server": [
         "web", "mail", "dns", "dhcp", "ntp", "syslog", "vpn", "honeypot",
         "data", "git", "metacentrum", "bot", "authentication", "smtp",
-        "proxy", "multipurpose", "development"
+        "proxy", "multipurpose", "development", "nas", "cloud", "application", "file"
     ],
     "net-device": [
         "core router", "wifi router", "firewall"
