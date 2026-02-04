@@ -49,7 +49,7 @@ def load_ip_ranges(filename: str) -> tuple:
     with path.open("r") as f:
         reader = csv.reader(f, delimiter=",")
         for row in reader:
-            if row[0] == "ip":
+            if not row or row[0] == "ip":
                 continue
             if row[1] == "addr":
                 protected_ip_addrs.append(row[0])
