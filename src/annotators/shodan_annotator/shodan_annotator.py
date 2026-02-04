@@ -246,7 +246,7 @@ def process_shodan_json_to_annotation(os, ports):
 
     if os_type == "synology diskstation manager (dsm)":
         group = "server"
-        _class = "data server"
+        _class = "data"
     elif os_type == "ios":
         if len(ports) > 0:
             # SSH will be opened always on router
@@ -267,20 +267,20 @@ def process_shodan_json_to_annotation(os, ports):
             group = "server"
             # First handle other ports and at the end handle web ports
             if 53 in ports:
-                _class = "dns server"
+                _class = "dns"
             elif 67 in ports:
-                _class = "dhcp server"
+                _class = "dhcp"
             elif 123 in ports:
-                _class = "ntp server"
+                _class = "ntp"
             elif set([179, 264]) & set(ports):
                 group = "net-device"
                 _class = "core router"
             elif set([25, 110, 587, 993, 995]) & set(ports):
-                _class = "mail server"
+                _class = "mail"
             elif 1701 in ports:
-                _class = "vpn server"
+                _class = "vpn"
             elif set([80, 443, 8080, 8443]) & set(ports):
-                _class = "web server"
+                _class = "web"
         else:
             if group is None and os_family is not None:
                 group = "end-device"
