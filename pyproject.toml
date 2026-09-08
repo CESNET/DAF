@@ -26,9 +26,6 @@ daf = "daf:main"
 [tool.setuptools]
 package-dir = {"" = "src"}
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 py-modules = [
   "annotation",
   "config",
@@ -41,8 +38,12 @@ py-modules = [
   "output",
   "pipeline",
   "stats",
-  "taxonomy_checker"
+  "taxonomy_checker",
+  "windows"
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
 line-length = 100
