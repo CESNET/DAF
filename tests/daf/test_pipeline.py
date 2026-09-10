@@ -115,3 +115,19 @@ def test_windowed_run(tmp_path):
     assert modules[1].seen.count("10.0.0.2") == 1
     ip_data = {ip["ip_addr"]: ip for ip in json.loads((tmp_path / "flows_ip_data.json").read_text())}
     assert ip_data["10.0.0.1"]["annotations"]["os_annotator"]["os_family"] == "linux"
+
+
+def test_ip_both_source_and_destination(tmp_path):
+    dataset = tmp_path / "flows.csv"
+    write_flows(dataset, [(0, "10.0.0.1", "linux", False), (1, "10.0.0.2", "windows", False)])
+    flows = pd.read_csv(dataset)
+    flows["DST_IP"] = ["10.0.0.2", "10.0.0.1"]
+    flows.to_csv(dataset, index=False)
+    config = module_config(dst_ip_field="DST_IP")
+    modules = modules_for(config)
+
+    run_daf(dataset, config, modules)
+
+    assert modules[0].calls == {"10.0.0.1": 1, "10.0.0.2": 1}
+    annotation_list = pd.read_csv(tmp_path / "flows_ip_annotation_list.csv")
+    assert annotation_list["ip_address"].tolist() == ["10.0.0.1", "10.0.0.2"]
