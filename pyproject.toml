@@ -30,13 +30,19 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 py-modules = [
+  "annotation",
+  "config",
+  "core",
   "daf",
+  "dataset",
   "ip",
   "ip_ranges",
-  "load",
+  "loader",
   "output",
+  "pipeline",
   "stats",
-  "annotation"
+  "taxonomy_checker",
+  "windows"
 ]
 
 [tool.black]
@@ -67,3 +73,6 @@ confidence = ["HIGH"]
 
 [tool.pylint.format]
 max-line-length = 100
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
