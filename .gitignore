@@ -23,6 +23,10 @@ dist/
 *.egg-info/
 .eggs/
 
+# Local NAT training.
+src/detectors/nat_detector/data/*.csv
+src/detectors/nat_detector/training/data/*.csv
+
 *.log
 *.tmp
 *.bak
