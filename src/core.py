@@ -12,7 +12,7 @@ Description: Base classes of DAF annotator and detector modules.
 import logging
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
-from typing import Optional
+from typing import Optional, Tuple
 
 import pandas as pd
 
@@ -102,6 +102,16 @@ class DAFModule(Configurable, ABC):
         self.config = self.check_config(config[self.name], self.name)
         self.daf_config = self.check_config(config["daf"], "daf", "DAF_REQUIREMENTS")
         self._is_set_up = False
+
+    @property
+    def deferred(self) -> bool:
+        """Return whether the module runs after all other modules of a run.
+
+        Deferred modules can use results of the other modules, e.g. the multi-device
+        flags of detectors. False by default.
+        """
+
+        return False
 
     @property
     def label(self) -> str:
@@ -252,6 +262,25 @@ class IPAnnotator(DAFModule):
         ----------
         ip : IP
             IP object to annotate in place.
+        """
+
+
+class IPSource(ABC):
+    """Mixin of modules that introduce IP addresses independently of the dataset.
+
+    DAF annotates the union of the dataset IPs and the IPs provided by all sources,
+    so a module that is an IP source can run even without a dataset.
+    """
+
+    @abstractmethod
+    def provide_ips(self) -> Tuple[str, list]:
+        """Provide the IP addresses of the module's own input.
+
+        Returns
+        -------
+        tuple
+            Name of the source (used for output file names when there is no dataset)
+            and a list of new :class:`ip.IP` objects.
         """
 
 
@@ -470,4 +499,4 @@ class Detector(FlowAnnotator):
         """
 
 
-__all__ = ["DAFModule", "Detector", "FlowAnnotator", "IPAnnotator"]
+__all__ = ["DAFModule", "Detector", "FlowAnnotator", "IPAnnotator", "IPSource"]
