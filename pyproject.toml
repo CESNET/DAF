@@ -12,12 +12,19 @@ authors = [
 ]
 description = "Device Annotation Framework (DAF): annotate flow records with metadata"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { file = "LICENCE" }
 dependencies = [
   "pandas>=1.5",
   "pyyaml>=6.0",
   "requests>=2.32"
+]
+
+[project.optional-dependencies]
+nat_detector = [
+  "joblib>=1.3",
+  "lightgbm==4.6.0",
+  "scikit-learn==1.6.1",
 ]
 
 [project.scripts]
@@ -26,18 +33,24 @@ daf = "daf:main"
 [tool.setuptools]
 package-dir = {"" = "src"}
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 py-modules = [
+  "annotation",
+  "config",
+  "core",
   "daf",
+  "dataset",
   "ip",
   "ip_ranges",
-  "load",
+  "loader",
   "output",
+  "pipeline",
   "stats",
-  "annotation"
+  "taxonomy_checker",
+  "windows"
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
 line-length = 100
@@ -67,3 +80,6 @@ confidence = ["HIGH"]
 
 [tool.pylint.format]
 max-line-length = 100
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
